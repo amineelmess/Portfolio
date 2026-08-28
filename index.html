@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amine El Messaoudi</title>
+  <meta name="description" content="Amine El Messaoudi — CS + Math student at Carleton College. I build full-stack apps, on-device ML pipelines, and self-hosted AI infrastructure." />
+
+  <!-- Open Graph / Twitter — replace YOUR-DOMAIN once the site has a URL -->
+  <meta property="og:title" content="Amine El Messaoudi" />
+  <meta property="og:description" content="Amine El Messaoudi — CS + Math student at Carleton College. I build full-stack apps, on-device ML pipelines, and self-hosted AI infrastructure." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://YOUR-DOMAIN" />
+  <meta property="og:image" content="https://YOUR-DOMAIN/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Amine El Messaoudi" />
+  <meta name="twitter:description" content="Amine El Messaoudi — CS + Math student at Carleton College. I build full-stack apps, on-device ML pipelines, and self-hosted AI infrastructure." />
+  <meta name="twitter:image" content="https://YOUR-DOMAIN/og-image.png" />
+
+  <!-- inline SVG favicon: a green > on the site background -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230d1117'/><text x='50%25' y='54%25' font-family='monospace' font-size='24' fill='%233fb950' text-anchor='middle' dominant-baseline='central'>&gt;</text></svg>" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar__art" id="portrait" aria-hidden="true"></div>
+      <h1 class="sidebar__name" id="sidebar-name"></h1>
+      <p class="sidebar__identity" id="sidebar-identity"></p>
+      <nav class="sidebar__nav" id="sidebar-nav" aria-label="sections"></nav>
+      <ul class="sidebar__links" id="sidebar-contact"></ul>
+    </aside>
+
+    <main class="terminal" id="terminal">
+    <div class="terminal__header">
+      <span class="terminal__title" id="window-title"></span>
+      <span class="terminal__hint">try the terminal — or just use the links on the left.</span>
+    </div>
+
+    <div class="terminal__body" id="screen">
+      <div id="history"></div>
+
+      <div class="input-line" id="input-line" hidden>
+        <span class="prompt" id="prompt"></span>
+        <span class="cmdline"><span class="input-text" id="input-text"></span><span class="cursor" id="cursor" aria-hidden="true"></span><span class="ghost" id="ghost" aria-hidden="true"></span></span>
+      </div>
+    </div>
+
+    <input
+      type="text"
+      id="hidden-input"
+      class="hidden-input"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      aria-label="terminal input"
+    />
+    </main>
+  </div>
+
+  <!-- ============================================================
+       ASCII ART — edit the artwork here (shown by the `art` command).
+       Kept as raw text so special characters need no escaping.
+       Do not add a `</script` sequence inside this block.
+       ============================================================ -->
+  <script type="text/plain" id="ascii-art">
+vzXYUUUUUzvYYYYYYYYYYYUUUUUUUUUUUYYUJJCCLQQ0Omwqpdkao#MMW&8%%%888&WM##
+a%@@@@@@@h0JJJJJJUJJJJJJCJCCJUCCCYn000OZZZmmwqpdbka*#MW&88%%%888&WWM##
+ZZmmwwwwOCJJJJJJJJJJJJCCCCCJCLJXXvrOZZwwwwqqqddkhao#MW&&&88888&&WWM##*
+zzzXXXzzuuzzzzzXXXXXXXXznxcvf\1]??]turX0OQwwqpdbhao*#MWW&&888&WWMM##**
+rxvvccvuxuvvunnnnnxxxxx\/x|}+ll!llli<+__[|Xmqppdkhao*#MMWW&&&&WMM##**o
+QCQ00QLXQQQQQQLLLCYCv|[?_ii;,^^;::,:,:lI!i_/XZdbkhaoo##MMW&&&WWMM#**oo
+xnnnnnrxxnnnnnnnxxj[~~~I,`^,"'`"";:^"^""::;Il<pbkhao**##MMW&WWMM##**oo
+jjjjjjjjjftfxxxxrj]<!;:;:,,,:;Ill!l,;;,;^^",IlxYhaooo*##MMWWWMM##***oa
+j|\vUz/|){}(vunf11l:,"`^^;+1fxnnxft|}?-+!^^"",;{Xhooo**#MMWWMMM##**ooa
+_{}-[|\1_>~)zzcu)?I;^`',_|rnvvvzzzzzzcvxt?"```I+|waoo**##MMMMM###**ooa
+{))\n|}]_<+(YYXXx-;,^^l}fxucXYYYYYYYXXzcnf_,``^:}qooo**##MMMM###***oaa
+1(|nvr1{[??|JJUUu~"``"i1jnvcXYUUUUUUYXccvx{:","idaooo***##MM###***ooaa
+{\|/)}_-_?]\LCCCJ<,^^"I/xnnxuXYUJJYu(_<__tj~,,,zoaooo***##MM###***oaaa
+?\|-<>~+l~[/QQQLLJ_,^`1n/+]|t(}jcXuft||\(((1ll}haaaaoo**##M###***ooaah
+{\\___]{]?}tO000QQJ}:>\(\\|)1)1{}{{|){_](jj1_[khhhaaaoo**####****oaaah
+(//{[?[}{{1tZOOO000z_!r/x|{1)\([fcf{ttffjnxf/\khhhhaaoo**####***ooaahh
+-//]:",l!+]tmZZZZO0Jt1nx/rxnuur(xzu)rcczvrtvftkhkkhaaoo***##***ooaaahh
+-//~^`+!:>-tmmmZZZZQu|nvujjttt1jvYzur(jurccvnrkhkkhhaooo**##***ooaaahh
+_//i```"~z\fwmmmmmZZYxrvuvXcjr/{(f/|fxt\xuuvCphkkkhhaaao**#***ooaaahhk
+?/t[<!""I_|fwmmmmmZZZLtxfxuj]\\/\/\/\)?)xnxjQkkkkkhhhaao***#**ooaahhhk
+?tf~,;;^I!+fwmmmmmZZZZJvtjcvx?}ZdmpOf|uuzunCkkbkkkkhhaaoo*##***oaahhkk
+}tf?>+?lIi_xwmZO0QQQQ0Jzn/rXcnt\rnnjncczuxnLkbbbkkkhhaaoo**#**ooaahhkk
+vxnvzzzcvunr|~>>!i!>i~vzct(jcvunnnuvvzXurrnuOkkkkkkhhaaaoo****ooahhkkk
+1nuuvvuuunx\>>>i>><?][vzvt()[jvvvYYXcc/(fxutXcdhkhhhhaaaoo***ooaahhhkb
+;_/nnuuunrj({!!>>>+[}[cxZxj\[!>[\/\|]~?tncvr0(:jdahhhaaaaoo**ooaahhhkb
+:Ii1xxnxrjf~>I>~?{-?]}}}h0rnj(}--?]}|/rcXcxYbC;:l1Loooaao******oahhkkb
+::I<}rxxrjf(|(1]~i><+~!0hbUuzvrt/trxnuzXznubhm+",::I~{fJhM####**oahhkk
+:::;>i}}[?-+>l;;I;liiI:*ahpzzYXcvvvczzXzuxkkhqv,,,,,,,,:;l~}\C*#*oaahk
+:,,"";;;;:,,,,:;:::;:,]aoZcZzXUUXccczXXvnqdkobC,,","",,,,,,,,:;li-zo*a
+,,"^",,,,,,""""",,,,,,XrrvQC0OUCLCJUUUYXQvxChoq;,"""",,,,,,,,,,,,,,:I<
+,"`",,,,,,,""",,,",,,-nJpbpdZ0JmZQQLCCC0LZCcnrw!,"""","""",,,,,,,,,,,"
+"`^,,,,,,,,,,,,,,,,,;jZpdhhdkhbakb0QQwpZdkbdp0r{,,,,,,",,,,,,,,,,,,,"^
+^'^,,,,,,,,,,,,,,,,,<cqdkaahbdha#hmOaappkkkkbpO;,,:,::::::,,,,,",,,,^"
+`.^"",,,,,,,,,,,,,,,{Opbdbkhaabbo*hapqdhaaahkdw;::::::::::,,,,,,,,""^"
+''^^",,,,,,,,,,,,,,:tpbkkkkhkhkddpbahaaaoaahkdq;::::::::::,,,,,",""^",
+..`^"",,,,,,,,,,,,:;jdkkhhhhhhhka###aaaaoahhhbq:::::::::::,,,,"",""^",
+ '`^"",,,,,,,,,,,,:;rbhhoahhhhhhoM#*haaaaahakdO:::::::::::,,,,,"""^^""
+ .'^",,,,,,,",,,,,:Ixkaooahaahkka##okhhhhhahkdv::::::::::,,,,,,,""^"""
+ .'",,,,,,,,",,,,::InkaaaaaaaahkoM#akhhhaaahkd|::::::::::,"""""""^^"""
+  `",,,,,,,,",,::::InaaaoooooahkoM#hkhhaaaahkd_:::::::::,""""""""^^"""
+ .^",,,,,,,,",:::::Inhaaoooaoahh*M*hkaaahhhhkd>;;:::::::,""""""""^^"""
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
