@@ -58,6 +58,7 @@ body {
   width: var(--sidebar);
   position: sticky;
   top: 2.5rem;
+  text-align: center;
 }
 
 /* portrait is centered and always contained by the sidebar column */
@@ -75,23 +76,29 @@ body {
   font-weight: normal;
 }
 
+/* balance keeps the centered line from leaving one word stranded below it */
 .sidebar__identity {
   color: var(--dim);
   margin-bottom: 1.25rem;
+  text-wrap: balance;
 }
 
 .sidebar__nav {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 1.25rem;
 }
 
-/* nav entries are buttons that run the matching terminal command */
+/* nav entries are buttons that run the matching terminal command. The marker
+   gutter is padding, and the negative margin pulls it back out of the centered
+   box so the labels — not the gutter — read as centered. */
 .nav__item {
   background: none;
   border: 0;
-  padding: 0;
+  padding: 0 0 0 2ch;
+  margin-left: -2ch;
+  position: relative;
   font: inherit;
   color: var(--accent);
   cursor: pointer;
@@ -104,14 +111,12 @@ body {
   text-decoration: none;
 }
 
-/* "you are here" marker; the space is reserved on every item so the
-   active one doesn't shift the list sideways */
-.nav__item::before {
-  content: "\00a0\00a0";
-}
-
+/* "you are here" marker. Out of flow in the reserved gutter, so it stays clear
+   of the label's underline and the list never shifts sideways. */
 .nav__item.is-active::before {
-  content: "> ";
+  content: ">";
+  position: absolute;
+  left: 0;
 }
 
 /* keyboard focus needs a visible indicator, since :focus drops the underline */
