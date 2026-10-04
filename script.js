@@ -1,70 +1,59 @@
-/* ===========================================================================
-   CONTENT
-   ---------------------------------------------------------------------------
-   Everything you might want to change lives here. Edit freely — none of the
-   logic below this object needs to be touched.
-   =========================================================================== */
+
 const CONTENT = {
-  // Title shown in the terminal's header bar.
   windowTitle: "amine@carleton:~",
 
-  // `whoami`
   whoami: {
     name: "Amine El Messaoudi",
-    identity: "CS + Math student at Carleton College.",
+    identity: "Computer Science + Mathematics student at Carleton College.",
   },
 
-  // `about` / `cat about.txt`
   about:
-    "CS + Math student at Carleton College. I build full-stack apps, " +
-    "on-device ML pipelines, and self-hosted AI infrastructure, most recently " +
-    "a mobile app that identifies individual animals from photos for ecology " +
-    "fieldwork, and a self-hosted LLM setup for my school.",
+    "Computer Science + Mathematics student at Carleton College. I build " +
+    "full-stack apps and websites, on-device ML pipelines, and self-hosted AI " +
+    "infrastructure, most recently a mobile app that identifies individual " +
+    "animals from photos for ecology fieldwork, and a self-hosted LLM setup " +
+    "for my school.",
 
-  // `projects` and `ls projects/`
-  // `description` is the one-line summary in the projects list.
-  // Leave `link` as "" to show a dim "in progress" note instead of a repo link.
-  // `slug` is used by `projects <slug>`, `cat <slug>` and the #projects/<slug> URL.
-  // `details` prints one line per entry; "" renders as a blank spacer line.
   projects: [
     {
       name: "Lizard Wizard",
       slug: "lizard-wizard",
       description:
         "Identifies individual lizards from field photos using image " +
-        "embeddings, so researchers can recognize the same animal across a " +
-        "season. Runs on-device so it works with no signal.",
+        "embeddings, helping researchers recognize the same animal across " +
+        "multiple sightings. Runs directly on the phone so it still works in " +
+        "areas with no signal.",
       link: "",
       details: [
-        "A mobile app that identifies individual lizards from field photos, so ecology researchers can track the same animal across a multi-year study without tagging it.",
+        "A mobile app that identifies individual lizards from field photos, helping ecology researchers track the same animals across multiple sightings without physically tagging them.",
         "",
-        "Instead of training a classifier — which would need a labeled dataset that doesn't exist yet — it uses a pretrained MobileNetV2 to turn each photo into a numeric fingerprint, then matches lizards by comparing those fingerprints. The database starts empty and fills up as researchers work.",
+        "There was not enough labeled data to train a normal image classifier, so I used a pretrained MobileNetV2 model to turn each photo into an embedding, which works like a numeric fingerprint. The app compares that embedding with previously stored lizards to find possible matches. The database starts empty and grows as researchers collect more data.",
         "",
-        "The hard part: fieldwork happens in canyons with no signal, but the researcher needs an answer while the lizard is still in hand. I converted the model to TensorFlow Lite so it runs on the phone itself, cached the reference data locally, and built a sync system that queues new sightings offline and pushes them once there's a connection.",
+        "The app also needed to work in field locations with little or no internet connection. I converted the model to TensorFlow Lite so image processing can run directly on the phone, stored the data needed for matching locally, and built an offline queue for new sightings. Once the phone has a connection again, the saved records can sync with the server.",
         "",
-        "Stack: Swift, SwiftUI, Flask, MongoDB, TensorFlow Lite.",
+        "Stack: Swift, SwiftUI, Flask, MongoDB, TensorFlow Lite",
         "",
-        "Status: ongoing research project at Carleton. Working on deploying to the App Store and Play Store.",
+        "Status: Ongoing research project at Carleton. Currently working toward mobile deployment.",
       ],
     },
     {
       name: "QuireMaker",
       slug: "quiremaker",
       description:
-        "Recreates historical book-binding layouts by simulating the " +
-        "physical fold, so students can see how a printed sheet becomes " +
-        "ordered pages. Zero dependencies, deployed for Carleton courses.",
+        "Recreates historical book layouts by simulating how a printed sheet " +
+        "is folded, showing students how pages end up in the correct order. " +
+        "Built with JavaScript and used in Carleton courses.",
       link: "https://digitalcarleton.github.io/QuireMaker2026/",
       details: [
-        "A browser tool that recreates how books were laid out on a printing press, so students can see how folding a printed sheet puts the pages in the right order.",
+        "A browser tool that recreates how books were laid out for printing, helping students see how folding a printed sheet puts the pages in the correct order.",
         "",
-        "Rather than hardcoding the known layouts from reference books, it works them out by simulating the fold itself: the sheet is modeled as a grid, each fold flips and reorders the cells, and reading the final stack top to bottom gives you the page numbers. I checked the output against the standard folio, quarto, and octavo tables.",
+        "Instead of storing the page layouts ahead of time, the program figures them out by simulating each fold. It represents the sheet as a grid, updates the position and direction of the cells after every fold, and then reads the final stack to determine the page order. I tested the results against standard folio, quarto, and octavo layouts.",
         "",
-        "Built with no dependencies at all — just HTML, CSS, and JavaScript — on purpose, so it can be hosted as static files and handed off without any setup. The previous version stopped working when its server-side stack was lost.",
+        "I built it using only HTML, CSS, and JavaScript so it can run as a static website without a server or extra setup.",
         "",
-        "Stack: vanilla JavaScript, HTML, CSS.",
+        "Stack: JavaScript, HTML, CSS",
         "",
-        "In use for Book Studies and Special Collections courses at Carleton.",
+        "Status: Used in Book Studies and Special Collections courses at Carleton.",
         "",
         "https://digitalcarleton.github.io/QuireMaker2026/",
       ],
@@ -73,16 +62,18 @@ const CONTENT = {
       name: "EcoPulse",
       slug: "ecopulse",
       description:
-        "Ingests and cleans 90,000+ household energy records, flags unusual " +
-        "consumption, and generates a plain-English report per household " +
-        "using the OpenAI API.",
+        "Processes and cleans 90,000+ household energy records, detects " +
+        "unusual energy use, and uses the OpenAI API to generate an " +
+        "easy-to-read report for each household.",
       link: "https://github.com/amineelmess/EcoPulse",
       details: [
-        "A dashboard that takes 90,000+ household energy records, finds unusual consumption, and writes a plain-language summary for each household.",
+        "A dashboard that processes more than 90,000 household energy records, finds unusual energy use, and creates a readable summary for each household.",
         "",
-        "Most of the work was in the data layer: automated pipelines that handle missing values, type conversions, and duplicates so the analysis runs on clean input. On top of that it flags anomalies and uses the OpenAI API to turn the numbers into something readable.",
+        "A large part of the project was cleaning the dataset before doing any analysis. I built a pipeline to handle missing values, incorrect data types, and duplicate records so the rest of the system always works with consistent data.",
         "",
-        "Stack: Python, Flask, Pandas, OpenAI API.",
+        "After cleaning the data, the system looks for unusual consumption patterns and uses the OpenAI API to turn the results into a short report that is easier to understand.",
+        "",
+        "Stack: Python, Flask, Pandas, OpenAI API",
         "",
         "https://github.com/amineelmess/EcoPulse",
       ],
@@ -91,16 +82,18 @@ const CONTENT = {
       name: "Drowsiness Detection",
       slug: "drowsiness",
       description:
-        "Real-time computer vision system that detects eye closure from a " +
-        "webcam feed and triggers an audio alert within a second, built on a " +
-        "custom-trained YOLOv8 model.",
+        "Real-time computer vision system that uses a custom-trained YOLOv8 " +
+        "model to detect when a driver's eyes are closed and trigger an " +
+        "audio alert within about a second.",
       link: "https://github.com/amineelmess/driver-drowsiness-alarm-detection_yolo",
       details: [
-        "A real-time system that watches a webcam feed and sounds an alarm when it detects a driver's eyes closing.",
+        "A real-time computer vision system that monitors a webcam feed and sounds an alarm when it detects that a driver's eyes have been closed for too long.",
         "",
-        "I trained a custom YOLOv8 model on labeled fatigue data and tuned the detection thresholds so it holds up in live conditions rather than just on clean test images. The pipeline runs frame by frame and fires an alert within about a second, so keeping the per-frame processing fast enough was the main constraint.",
+        "I trained a custom YOLOv8 model using labeled drowsiness data and adjusted the detection thresholds based on how the model performed on live webcam video. The program processes the video frame by frame and tracks eye detections so it can trigger an alert within about a second.",
         "",
-        "Stack: Python, YOLOv8, OpenCV.",
+        "Since the system runs in real time, I also had to keep the image processing fast enough that the webcam feed and detection stayed responsive.",
+        "",
+        "Stack: Python, YOLOv8, OpenCV",
         "",
         "https://github.com/amineelmess/driver-drowsiness-alarm-detection_yolo",
       ],
@@ -109,23 +102,24 @@ const CONTENT = {
       name: "NBA StatCompare",
       slug: "nba",
       description:
-        "Full-stack app comparing 500+ NBA players across stat categories, " +
-        "with SQL-backed filtering over 6,000+ records and interactive " +
-        "D3.js charts.",
+        "Full-stack website for comparing 500+ NBA players across different " +
+        "stat categories, with PostgreSQL filtering over 6,000+ records and " +
+        "interactive D3.js charts.",
       link: "https://github.com/amineelmess/NBA-Stats-Website",
       details: [
-        "A full-stack app for comparing NBA players side by side across different stat categories, built with two teammates.",
+        "A full-stack web app for comparing NBA players across different statistics, built with two teammates.",
         "",
-        "The backend is a Flask API over a PostgreSQL database of 6,000+ records, with queries that let you filter by player, season, and category on the fly. The frontend renders the results as interactive D3.js charts so you can compare players visually rather than reading a table.",
+        "The backend uses Flask with a PostgreSQL database containing more than 6,000 records. Users can search and filter the data by player, season, and statistical category instead of loading everything at once.",
         "",
-        "Stack: Python, Flask, PostgreSQL, JavaScript, D3.js.",
+        "On the frontend, I used D3.js to turn the results into interactive charts, making it easier to compare players visually instead of looking through rows of numbers.",
+        "",
+        "Stack: Python, Flask, PostgreSQL, JavaScript, D3.js",
         "",
         "https://github.com/amineelmess/NBA-Stats-Website",
       ],
     },
   ],
 
-  // `skills` — grouped
   skills: [
     { group: "Languages", items: "Python, C, C++, SQL, JavaScript, Java, Swift, R" },
     {
@@ -137,7 +131,6 @@ const CONTENT = {
     { group: "Spoken", items: "French (native), Arabic (native), English (fluent), Spanish (basic)" },
   ],
 
-  // `experience` — one entry per role; `bullets` prints one line each.
   experience: [
     {
       role: "AI/Software Developer",
@@ -156,8 +149,8 @@ const CONTENT = {
       location: "Northfield, MN",
       period: "Aug 2025 – present",
       bullets: [
-        "Led 10+ community initiatives for a 50-resident community, using feedback surveys and iterative planning to increase participation.",
-        "Designed incident-response workflows including escalation paths and resolution checklists, coordinating across campus departments.",
+        "Led 10+ community initiatives (meetings, workshops, events) for a 50-resident community, using resident feedback to improve events and increase participation and engagement.",
+        "Coordinated with campus departments to respond to resident concerns, escalate issues when needed, and make sure problems were resolved.",
       ],
     },
     {
@@ -181,45 +174,35 @@ const CONTENT = {
     },
   ],
 
-  // `contact`
   contact: {
     email: "elmessaoudia@carleton.edu",
     github: "https://github.com/amineelmess",
     linkedin: "https://linkedin.com/in/amineelmessaoudi",
   },
 
-  // `now` — one line per entry; "" renders as a blank spacer line.
   now: [
     "Studying abroad at the Aquincum Institute of Technology in Budapest through December 2026, taking courses in machine learning, applied AI, cryptography, and data science.",
     "",
     "Building and maintaining self-hosted LLM infrastructure for my school through my role with Academic Technology Support.",
     "",
-    "Learning: going deeper on systems and ML infrastructure.",
+    "Learning: going deeper on model training and tuning through my ML coursework in Budapest, and writing more C++ on the side.",
     "",
-    "Open to summer 2027 internships in software, ML, and data.",
+    "Open to 2026 externships and summer 2027 internships in software, ML, and data.",
     "",
-    "Last updated: August 2026",
+    "Last updated: September 2026",
   ],
 
-  // Left sidebar nameplate. The name is reused from `whoami` above.
-  // `nav` lists which commands the sidebar links run.
   sidebar: {
-    identity: "CS + Math @ Carleton College",
+    identity: "Computer Science + Mathematics @ Carleton College",
+    hint: "rather not type? click a section \u2193",
     nav: ["about", "projects", "now", "contact"],
   },
 
-  // `resume` — a file sitting next to index.html, or a full URL. Leave it
-  // empty to have the command say the resume isn't up yet.
-  resumeUrl: "resume.pdf",
-
-  // `fortune`
   funFact: "I love soccer. \u26bd",
 };
 
-/* ===========================================================================
-   LOGIC — no need to edit below to change your content.
-   =========================================================================== */
-const PROMPT = "\u279c ~"; // ➜ ~
+
+const PROMPT = "\u279c ~";
 
 const screen = document.getElementById("screen");
 const history = document.getElementById("history");
@@ -231,8 +214,6 @@ const windowTitle = document.getElementById("window-title");
 const asciiArtEl = document.getElementById("ascii-art");
 const ghostEl = document.getElementById("ghost");
 
-// Raw ASCII portrait, taken verbatim from the hidden tag in index.html.
-// Leading/trailing blank lines are trimmed; internal spacing is preserved.
 const ASCII_ART = asciiArtEl
   ? asciiArtEl.textContent.replace(/^\n+/, "").replace(/\s+$/, "")
   : "";
@@ -245,9 +226,6 @@ windowTitle.textContent = CONTENT.windowTitle;
 promptEl.textContent = PROMPT;
 
 /* ---- themes ----------------------------------------------------------- */
-// Each theme is a set of overrides for the custom properties declared in
-// :root. `green` is empty because it *is* the stylesheet default — applying
-// it just clears the inline overrides.
 const THEME_VARS = ["--bg", "--fg", "--accent", "--border", "--dim"];
 const THEMES = {
   green: {},
@@ -269,7 +247,6 @@ const THEMES = {
 const THEME_KEY = "theme";
 let activeTheme = "green";
 
-// Swap the :root custom properties. Returns false for an unknown name.
 function applyTheme(name) {
   const theme = THEMES[name];
   if (!theme) return false;
@@ -284,7 +261,7 @@ function storedTheme() {
   try {
     return window.localStorage.getItem(THEME_KEY) || "";
   } catch (e) {
-    return ""; // storage blocked (private mode / some file:// contexts)
+    return "";
   }
 }
 
@@ -293,7 +270,6 @@ function setTheme(name) {
   try {
     window.localStorage.setItem(THEME_KEY, name);
   } catch (e) {
-    // storage unavailable — the theme still applies for this session
   }
   return true;
 }
@@ -313,12 +289,8 @@ const link = (url, label) =>
     label || url
   )}</a>`;
 
-// Non-breaking spaces, so runs of them survive HTML whitespace collapsing.
 const sp = (n) => "\u00a0".repeat(n);
 
-// A link inside the terminal output that runs a command instead of navigating.
-// A button (not an <a>) so it has no href to follow; the click is picked up by
-// the delegated listener in enableCommandLinks().
 const cmdLink = (cmd, label) =>
   `<button type="button" class="cmd-link" data-command="${escapeHTML(
     cmd
@@ -326,13 +298,10 @@ const cmdLink = (cmd, label) =>
 
 const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// Keep the input in view without yanking the page around. "nearest" only
-// scrolls when the input is actually off-screen, so typing never jumps.
 function scrollToBottom() {
   inputLine.scrollIntoView({ block: "nearest", inline: "nearest" });
 }
 
-// Append one line of raw HTML to the history.
 function printHTML(html = "") {
   const p = document.createElement("p");
   p.className = "line";
@@ -341,7 +310,6 @@ function printHTML(html = "") {
   scrollToBottom();
 }
 
-// Append several lines wrapped as a spaced block.
 function printBlock(htmlLines) {
   const div = document.createElement("div");
   div.className = "block";
@@ -352,31 +320,50 @@ function printBlock(htmlLines) {
   scrollToBottom();
 }
 
-// Scale a rendered art block so its widest line fills the column width.
-// Font-agnostic: measure the natural width at a base size, then rescale.
+function artHeightBudget(pre) {
+  if (!screen.contains(pre)) return 0;
+  const cs = getComputedStyle(screen);
+  const padding =
+    (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
+  const lineHeight = parseFloat(cs.lineHeight) || 24;
+  return screen.clientHeight - padding - lineHeight * 3;
+}
+
 function fitArt(pre) {
   const container = pre.parentElement;
   if (!container) return;
-  // clientWidth includes padding, so subtract it to get the true inner width.
   const cs = getComputedStyle(container);
   const padding =
     (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
   const available = container.clientWidth - padding;
   if (available <= 0) return;
   const base = 10;
-  // Measure as inline-block so scrollWidth is the actual text width, not the
-  // full column width (a block <pre> would always report the container width).
   pre.style.display = "inline-block";
   pre.style.fontSize = base + "px";
   const natural = pre.scrollWidth;
-  if (natural > 0) {
-    // scale the font so the widest line fills the full column width
-    const size = (base * (available - 1)) / natural;
-    pre.style.fontSize = size + "px";
+  if (natural <= 0) return;
+  let size = (base * (available - 1)) / natural;
+  const budget = artHeightBudget(pre);
+  if (budget > 0 && pre.scrollHeight > 0) {
+    size = Math.min(size, (base * budget) / pre.scrollHeight);
   }
+  pre.style.fontSize = size + "px";
+  trimSidebarArt(pre);
 }
 
-// Render the ASCII portrait (textContent, so no escaping needed).
+function trimSidebarArt(pre) {
+  const sidebar = pre.closest(".sidebar");
+  const last = sidebar && sidebar.lastElementChild;
+  if (!last) return;
+  const spill =
+    last.getBoundingClientRect().bottom -
+    sidebar.getBoundingClientRect().bottom;
+  const height = pre.getBoundingClientRect().height;
+  if (spill <= 0 || height <= spill) return;
+  pre.style.fontSize =
+    (parseFloat(pre.style.fontSize) * (height - spill)) / height + "px";
+}
+
 function printArt() {
   if (!ASCII_ART) return;
   const pre = document.createElement("pre");
@@ -388,13 +375,11 @@ function printArt() {
 }
 
 /* ---- neofetch --------------------------------------------------------- */
-// Look up one skills group's items so neofetch reuses CONTENT.skills.
 function skillGroup(name) {
   const group = CONTENT.skills.find((s) => s.group === name);
   return group ? group.items : "";
 }
 
-// Stat rows for `neofetch`, all drawn from existing CONTENT.
 function neofetchRows() {
   const label = (t) =>
     `<span class="accent">${t.padEnd(10, " ").replace(/ /g, "\u00a0")}</span>`;
@@ -411,7 +396,6 @@ function neofetchRows() {
   ];
 }
 
-// Classic neofetch layout: the same portrait on the left, stats on the right.
 function printNeofetch() {
   const wrap = document.createElement("div");
   wrap.className = "neofetch";
@@ -440,7 +424,6 @@ function printNeofetch() {
   scrollToBottom();
 }
 
-// Render the portrait into the side column (aside), fit to its width.
 function renderPortrait() {
   const portrait = document.getElementById("portrait");
   if (!portrait || !ASCII_ART) return;
@@ -451,7 +434,6 @@ function renderPortrait() {
   fitArt(pre);
 }
 
-// Echo a committed command with its green prompt.
 function echoCommand(cmd) {
   printHTML(
     `<span class="accent">${escapeHTML(PROMPT)}</span> ${escapeHTML(cmd)}`
@@ -459,9 +441,7 @@ function echoCommand(cmd) {
 }
 
 /* ---- commands --------------------------------------------------------- */
-// What `help` prints. Everything not listed here still works — `sudo`, `vim`
-// and `exit` are just left for people to find on their own.
-const HELP_PRIMARY = ["about", "projects", "skills", "experience", "resume", "contact"];
+const HELP_PRIMARY = ["about", "projects", "skills", "experience", "contact"];
 const HELP_ALSO = [
   "whoami",
   "now",
@@ -475,13 +455,9 @@ const HELP_ALSO = [
   "clear",
 ];
 
-// Each command returns an array of HTML strings (printed as a block),
-// or performs its own side effect and returns null.
 const COMMANDS = {
   help: {
     desc: "list all available commands",
-    // Only the headline commands get a description; the rest are named on one
-    // dim line so a first-time visitor isn't handed an 18-item menu.
     run: () => [
       ...HELP_PRIMARY.map((name) => {
         const pad = name.padEnd(11, " ").replace(/ /g, "\u00a0");
@@ -507,7 +483,6 @@ const COMMANDS = {
   },
   projects: {
     desc: "things I've built",
-    // Per project: name + action links, a dim one-liner, then a blank line.
     run: () => [
       ...CONTENT.projects.flatMap((p) => {
         const name = `<span class="accent">${escapeHTML(p.name)}</span>`;
@@ -534,8 +509,6 @@ const COMMANDS = {
   },
   experience: {
     desc: "roles I've held",
-    // Role + org, then place and dates, then the bullets. Roles are separated
-    // by a blank line rather than trailed by one, so the block ends clean.
     run: () =>
       CONTENT.experience.flatMap((e, i) => [
         ...(i > 0 ? ["&nbsp;"] : []),
@@ -553,17 +526,6 @@ const COMMANDS = {
         `github\u00a0\u00a0\u00a0${link(c.github, c.github)}`,
         `linkedin\u00a0${link(c.linkedin, c.linkedin)}`,
       ];
-    },
-  },
-  resume: {
-    desc: "view my resume",
-    run: () => {
-      const url = CONTENT.resumeUrl;
-      if (!url) return ["resume: not up yet."];
-      // A relative path is as linkable as a full URL; label it with the
-      // filename so it's obvious a PDF is about to open.
-      const label = url.split("/").pop() || "resume";
-      return [link(url, label)];
     },
   },
   ls: {
@@ -624,19 +586,16 @@ const COMMANDS = {
 };
 
 /* ---- routing / sidebar state ------------------------------------------ */
-// The nav item matching a command name, or null when it isn't a nav section.
 function navFor(name) {
   return CONTENT.sidebar.nav.includes(name) ? name : null;
 }
 
-// Reflect the current section in the URL so it can be shared.
 function updateHash(route) {
   if (!route) return;
   const next = "#" + route;
   if (window.location.hash !== next) window.location.hash = next;
 }
 
-// Highlight the sidebar item for the active section, clearing the others.
 function setActiveNav(name) {
   if (!name) return;
   document.querySelectorAll(".nav__item").forEach((btn) => {
@@ -644,14 +603,11 @@ function setActiveNav(name) {
   });
 }
 
-// Called when a section command runs: sync the URL and the sidebar marker.
 function markSection(route, navName) {
   if (introComplete) updateHash(route);
   setActiveNav(navName);
 }
 
-// Map the URL hash to a command, or "" when it isn't routable.
-// #projects/lizard-wizard -> "projects lizard-wizard"
 function commandFromHash() {
   const raw = window.location.hash.replace(/^#/, "").trim().toLowerCase();
   if (!raw) return "";
@@ -661,14 +617,12 @@ function commandFromHash() {
 }
 
 /* ---- cat / project details -------------------------------------------- */
-// Files `cat` can print, mapped to the command output they mirror.
 const CAT_FILES = {
   "about.txt": () => COMMANDS.about.run(),
   "skills.txt": () => COMMANDS.skills.run(),
   "contact.txt": () => COMMANDS.contact.run(),
 };
 
-// Turn any https:// URL in a detail line into a real link, escaping the rest.
 function linkifyDetails(text) {
   const urlRe = /https:\/\/\S+/g;
   let out = "";
@@ -682,15 +636,26 @@ function linkifyDetails(text) {
   return out + escapeHTML(text.slice(last));
 }
 
-// Full detail block for a project slug, or null when the slug is unknown.
+const DETAIL_LABEL = /^(Stack|Status):\s+/;
+
+function detailLine(text) {
+  const label = text.match(DETAIL_LABEL);
+  if (!label) return linkifyDetails(text);
+  return `<span class="accent">${label[1]}:</span> ${linkifyDetails(
+    text.slice(label[0].length)
+  )}`;
+}
+
 function projectDetails(slug) {
   const project = CONTENT.projects.find((p) => p.slug === slug);
   if (!project || !project.details) return null;
-  // "" entries become real blank lines (an empty <p> would collapse).
-  return project.details.map((l) => (l === "" ? "&nbsp;" : linkifyDetails(l)));
+  return [
+    `<span class="accent">${escapeHTML(project.name)}</span>`,
+    "&nbsp;",
+    ...project.details.map((l) => (l === "" ? "&nbsp;" : detailLine(l))),
+  ];
 }
 
-// Output for `cat <name>`: a faux file, a project slug, or an error line.
 function catFile(name) {
   const key = name.toLowerCase();
   if (key === "projects" || key === "projects/") {
@@ -702,15 +667,12 @@ function catFile(name) {
   return [`cat: ${escapeHTML(name)}: No such file or directory`];
 }
 
-// Special-case aliases handled before the registry lookup.
 function runCommand(raw) {
   const cmd = raw.trim();
   if (cmd === "") return;
 
   const lower = cmd.toLowerCase();
 
-  // `theme <name>` swaps the palette; bare `theme` falls through to the
-  // registry entry, which lists the options.
   if (lower.startsWith("theme ")) {
     const name = cmd.slice(6).trim().toLowerCase();
     if (setTheme(name)) {
@@ -722,12 +684,10 @@ function runCommand(raw) {
     }
     return;
   }
-  // `cd` anywhere is a no-op on a single-page site.
   if (lower === "cd" || lower.startsWith("cd ")) {
     printBlock(["cd: everything's already here."]);
     return;
   }
-  // `echo <text>` prints its argument back.
   if (lower === "echo" || lower.startsWith("echo ")) {
     const text = cmd.slice(4).trim();
     printBlock([text === "" ? "&nbsp;" : escapeHTML(text)]);
@@ -741,7 +701,6 @@ function runCommand(raw) {
     printBlock(catFile(cmd.slice(4).trim()));
     return;
   }
-  // `projects <slug>` prints one project's full detail block.
   if (lower.startsWith("projects ")) {
     const slug = cmd.slice(9).trim().toLowerCase();
     const details = projectDetails(slug);
@@ -780,8 +739,6 @@ function runCommand(raw) {
 }
 
 /* ---- intro auto-typing ------------------------------------------------ */
-// Kept short so the whole intro fits on screen without scrolling. Projects are
-// one click away instead of printed up front.
 const INTRO = ["whoami", "about"];
 
 const INVITE = `${cmdLink(
@@ -791,9 +748,9 @@ const INVITE = `${cmdLink(
 
 const HINT = `<span class="dim">type <span class="accent">'help'</span> to explore — start typing and press <span class="accent">Tab</span> (or <span class="accent">&rarr;</span>) to autocomplete.</span>`;
 
-// Sidebar nav clicks are ignored until the intro animation has finished.
+const NAV_HINT = `<span class="dim"><span class="accent">&larr;</span> no typing needed — the menu on the left runs these same sections, and <span class="accent">&gt;</span> marks the one you're on.</span>`;
+
 let introComplete = false;
-// Set by any keypress or click while the intro is still playing.
 let skipIntro = false;
 
 async function typeCommand(cmd) {
@@ -818,7 +775,6 @@ async function typeCommand(cmd) {
 async function runIntro() {
   inputLine.hidden = false;
 
-  // Any keypress or click jumps straight to the live prompt.
   const onSkip = () => {
     skipIntro = true;
   };
@@ -837,33 +793,32 @@ async function runIntro() {
   window.removeEventListener("keydown", onSkip);
   window.removeEventListener("click", onSkip);
 
-  // Set before printing so the invite link is live the moment it appears.
   introComplete = true;
   printBlock([INVITE]);
+  printHTML(NAV_HINT);
   printHTML(HINT);
   enableLiveInput();
 }
 
-// Deep link: skip the intro entirely and run the routed command instead.
 function runRouted(cmd) {
   inputLine.hidden = false;
   introComplete = true;
   echoCommand(cmd);
   cmdHistory.push(cmd);
   runCommand(cmd);
+  printHTML(NAV_HINT);
   printHTML(HINT);
   enableLiveInput();
 }
 
 /* ---- live input ------------------------------------------------------- */
 const cmdHistory = [];
-let historyIndex = -1; // -1 means "current (empty) line"
+let historyIndex = -1;
 
 function commandNames() {
   return Object.keys(COMMANDS);
 }
 
-// Best command match for the current input (single token only).
 function suggestion(value) {
   if (!value || /\s/.test(value)) return "";
   const partial = value.toLowerCase();
@@ -873,14 +828,12 @@ function suggestion(value) {
   return match || "";
 }
 
-// Show the un-typed remainder of the suggested command as dim ghost text.
 function updateGhost() {
   const value = hiddenInput.value;
   const match = suggestion(value);
   ghostEl.textContent = match ? match.slice(value.length) : "";
 }
 
-// Fill in the currently suggested command, if any.
 function acceptGhost() {
   const ghost = ghostEl.textContent;
   if (!ghost) return false;
@@ -914,7 +867,6 @@ function enableLiveInput() {
       e.preventDefault();
       acceptGhost();
     } else if (e.key === "ArrowRight") {
-      // accept the suggestion only when the caret is at the end
       if (
         ghostEl.textContent &&
         hiddenInput.selectionStart === hiddenInput.value.length
@@ -941,8 +893,6 @@ function enableLiveInput() {
     }
   });
 
-  // Tapping anywhere focuses the input (mobile-friendly), but don't steal
-  // focus when the visitor is selecting text or tapping a link.
   document.addEventListener("click", (e) => {
     if (e.target.closest("a")) return;
     const selection = window.getSelection();
@@ -958,15 +908,12 @@ function setInput(value) {
   inputText.textContent = value;
   updateGhost();
   scrollToBottom();
-  // move caret to end
   requestAnimationFrame(() => {
     hiddenInput.setSelectionRange(value.length, value.length);
   });
 }
 
 /* ---- sidebar ---------------------------------------------------------- */
-// Run a command as if the visitor had typed it. Reuses echoCommand and
-// runCommand so no command logic is duplicated here.
 function submitCommand(cmd) {
   if (!introComplete) return;
   echoCommand(cmd);
@@ -976,9 +923,6 @@ function submitCommand(cmd) {
   hiddenInput.focus({ preventScroll: true });
 }
 
-// Action links printed into the terminal (e.g. a project's `description`) run
-// their command through the same path as a typed one. Delegated from #history
-// so blocks printed earlier stay live.
 function enableCommandLinks() {
   history.addEventListener("click", (e) => {
     const trigger = e.target.closest(".cmd-link");
@@ -989,12 +933,12 @@ function enableCommandLinks() {
 }
 
 function renderSidebar() {
-  renderPortrait();
-
   const nameEl = document.getElementById("sidebar-name");
   const identityEl = document.getElementById("sidebar-identity");
+  const hintEl = document.getElementById("sidebar-hint");
   if (nameEl) nameEl.textContent = CONTENT.whoami.name;
   if (identityEl) identityEl.textContent = CONTENT.sidebar.identity;
+  if (hintEl) hintEl.textContent = CONTENT.sidebar.hint;
 
   const nav = document.getElementById("sidebar-nav");
   if (nav) {
@@ -1022,10 +966,11 @@ function renderSidebar() {
       list.appendChild(li);
     });
   }
+
+  renderPortrait();
 }
 
 /* ---- boot ------------------------------------------------------------- */
-// Re-fit any rendered portraits when the window size changes.
 let resizeTimer;
 window.addEventListener("resize", () => {
   clearTimeout(resizeTimer);
@@ -1034,15 +979,12 @@ window.addEventListener("resize", () => {
   }, 100);
 });
 
-// Restore the saved theme before anything renders.
 applyTheme(storedTheme() || "green");
 
-hiddenInput.disabled = true; // ignore keystrokes during the intro
+hiddenInput.disabled = true;
 renderSidebar();
 enableCommandLinks();
 
-// A routable hash (#projects, #contact, #projects/lizard-wizard) replaces the
-// intro; anything else falls through to the normal animated intro.
 const routedCommand = commandFromHash();
 if (routedCommand) {
   runRouted(routedCommand);
