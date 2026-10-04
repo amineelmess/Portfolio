@@ -8,4 +8,4 @@ Type `help` to see what's there, or just click the links in the sidebar.
 
 ## Built with
 
-Vanilla HTML, CSS, and JavaScript. 
+HTML, CSS, and JavaScript. 
