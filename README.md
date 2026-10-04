@@ -1,12 +1,11 @@
-# amineelmess.github.io
+# Amine Personal Portfolio
 
 My personal site, built as an interactive terminal.
 
-**Live:** 
+**Live at (https://amineelmess.github.io/Portfolio/)**
 
-Type `help` to see what's there, or use the sidebar links.
+Type `help` to see what's there, or just click the links in the sidebar.
 
 ## Built with
 
 Vanilla HTML, CSS, and JavaScript. 
-
